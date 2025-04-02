@@ -12,14 +12,17 @@ const postSchema = new mongoose.Schema(
     },
     tags: {
       type: Array,
-      required: true,
     },
     image: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "PostImage",
     },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("PostImage", postSchema);
+module.exports = mongoose.model("Post", postSchema);
