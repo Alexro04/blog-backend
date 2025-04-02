@@ -16,6 +16,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    avatarUrl: {
+      type: String,
+      required: true,
+    },
+    avatarPublicId: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
