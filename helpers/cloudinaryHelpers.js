@@ -9,7 +9,7 @@ async function uploadToCloudinary(file) {
       publicId: uploadedResult.public_id,
     };
   } catch (error) {
-    console.log(error);
+    throw new Error(error.message);
   }
 }
 
