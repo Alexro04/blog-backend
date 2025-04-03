@@ -3,7 +3,7 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "/assets/upload");
+    cb(null, "assets/uploads");
   },
   filename: function (req, file, cb) {
     cb(
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 });
 
 function fileFilter(req, file, cb) {
-  if (file.mimeType.startsWith("image/")) {
+  if (file.mimetype.startsWith("image/")) {
     cb(null, true);
   } else {
     cb(new Error("You can only upload an image"));

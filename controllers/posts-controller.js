@@ -88,13 +88,6 @@ async function createPost(req, res) {
       image = newPostImage._id;
     }
 
-    // testing
-    if (!title && !content) {
-      title = "For Test's sake";
-      content = "Testingindinw";
-      tags = ["test1", "test2"];
-    }
-
     // create new post and store in db
     const newPost = new Post({
       title,
@@ -111,7 +104,7 @@ async function createPost(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res.status(201).json({
+    res.status(500).json({
       success: false,
       message: error.message,
     });
