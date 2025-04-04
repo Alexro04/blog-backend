@@ -13,4 +13,14 @@ async function uploadToCloudinary(file) {
   }
 }
 
-module.exports = { uploadToCloudinary };
+async function deleteFromCloudinary(publicId) {
+  try {
+    const deletedResult = await cloudinary.uploader.destroy(publicId);
+    console.log(deletedResult);
+    return deletedResult;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+module.exports = { uploadToCloudinary, deleteFromCloudinary };

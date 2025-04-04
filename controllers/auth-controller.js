@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { uploadToCloudinary } = require("../helpers/cloudinaryHelpers");
 
 async function loginUser(req, res) {
   try {
@@ -66,17 +65,12 @@ async function registerUser(req, res) {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    //store default profile picture to cloudinary
-    const avatarFilePath = "./assets/default-avatar.jpg";
-    const { url, publicId } = await uploadToCloudinary(avatarFilePath);
-
     //store in database
     const newUser = await User.create({
       fullname,
       email,
       password: hashedPassword,
-      avatarUrl: url,
-      avatarPublicId: publicId,
+      avatarUrl: process.env.DEFAULT_AVATAR_URL,
     });
 
     if (!newUser) throw new Error("Error registering user");

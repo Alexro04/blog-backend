@@ -22,7 +22,6 @@ const userSchema = new mongoose.Schema(
     },
     avatarPublicId: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }
