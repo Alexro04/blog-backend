@@ -6,6 +6,21 @@ const Post = require("../models/Post");
 const PostImage = require("../models/PostImage");
 const User = require("../models/User");
 
+async function getAllPostByUser(req, res) {
+  const userId = req.params.userId;
+  const post = await User.aggregate([
+    {
+      $match: { content: "Change everything" },
+    },
+  ]);
+
+  res.status(200).json({
+    success: true,
+    message: `Successfully retrieved all posts by user with id: ${userId}`,
+    data: post,
+  });
+}
+
 async function getPosts(req, res) {
   try {
     // pagination
@@ -195,4 +210,11 @@ async function editPost(req, res) {
   }
 }
 
-module.exports = { createPost, getPosts, getPost, deletePost, editPost };
+module.exports = {
+  createPost,
+  getPosts,
+  getPost,
+  deletePost,
+  editPost,
+  getAllPostByUser,
+};

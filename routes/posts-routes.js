@@ -5,6 +5,7 @@ const {
   getPost,
   deletePost,
   editPost,
+  getAllPostByUser,
 } = require("../controllers/posts-controller");
 const authMiddleware = require("../middleware/auth-middlware");
 const multer = require("../middleware/upload-middleware");
@@ -12,6 +13,7 @@ const multer = require("../middleware/upload-middleware");
 const router = express.Router();
 
 router.post("/create", authMiddleware, multer.single("post-image"), createPost);
+router.get("/get/:userId", getAllPostByUser);
 router.post(
   "/edit/:postId",
   authMiddleware,
